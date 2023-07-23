@@ -31,24 +31,22 @@ public class TrangChu extends AppCompatActivity implements NavigationView.OnNavi
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
-//            navigationView.setCheckedItem(R.id.manage);
-//        }
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new QuanLy()).commit();
+            navigationView.setCheckedItem(R.id.manage);
+        }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.manage) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new QuanLy()).commit();
+        } else if (item.getItemId() == R.id.logout) {
+            finish();
+        } else if (item.getItemId() == R.id.introduce) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GioiThieu()).commit();
         }
-//        else if (item.getItemId() == R.id.introduce) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Bookmark()).commit();
-//        } else if (item.getItemId() == R.id.setting) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Setting()).commit();
-//        } else if (item.getItemId() == R.id.logout) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Logout()).commit();
-//        }
+
         drawerLayout.close();
         return true;
     }
