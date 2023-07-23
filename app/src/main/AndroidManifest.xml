@@ -16,7 +16,7 @@
             android:name=".DangKy"
             android:exported="false" />
         <activity
-            android:name=".QuanLySP"
+            android:name=".TrangChu"
             android:exported="false" />
         <activity
             android:name=".DangNhap"

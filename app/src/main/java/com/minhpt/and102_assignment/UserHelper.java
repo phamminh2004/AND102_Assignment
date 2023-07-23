@@ -16,7 +16,7 @@ public class UserHelper extends SQLiteOpenHelper {
     SQLiteDatabase database = this.getWritableDatabase();
 
     public UserHelper(Context context) {
-        super(context, "ToDoUser", null, 1);
+        super(context, "UserDB", null, 1);
     }
 
     @Override

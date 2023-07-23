@@ -11,13 +11,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class QuanLySP extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TrangChu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quan_ly_sp);
+        setContentView(R.layout.activity_trang_chu);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,9 +39,10 @@ public class QuanLySP extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        if (item.getItemId() == R.id.manage) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
-//        } else if (item.getItemId() == R.id.introduce) {
+        if (item.getItemId() == R.id.manage) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new QuanLy()).commit();
+        }
+//        else if (item.getItemId() == R.id.introduce) {
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Bookmark()).commit();
 //        } else if (item.getItemId() == R.id.setting) {
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Setting()).commit();

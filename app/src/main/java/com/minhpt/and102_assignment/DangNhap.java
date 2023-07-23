@@ -9,11 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.ArrayList;
-
 public class DangNhap extends AppCompatActivity {
     EditText edt_username, edt_password;
     Button btn_login;
@@ -37,7 +32,7 @@ public class DangNhap extends AppCompatActivity {
             User currentUser = userHelper.checkAcc(new User(username, password));
             if (currentUser != null) {
                 Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(DangNhap.this, QuanLySP.class));
+                startActivity(new Intent(DangNhap.this, TrangChu.class));
             } else {
                 Toast.makeText(this, "Tài khoản hoặc mật khẩu sai!", Toast.LENGTH_SHORT).show();
             }

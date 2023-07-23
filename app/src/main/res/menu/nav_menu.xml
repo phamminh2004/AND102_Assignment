@@ -8,18 +8,18 @@
         android:title="Quản lý sản phẩm" />
     <item
         android:id="@+id/introduce"
-        android:icon="@drawable/person"
+        android:icon="@drawable/ic_person"
         android:title="Giới thiệu" />
     <group android:checkableBehavior="single">
         <item android:title="Khác">
             <menu>
                 <item
                     android:id="@+id/setting"
-                    android:icon="@drawable/setting"
+                    android:icon="@drawable/ic_setting"
                     android:title="Cài đặt" />
                 <item
                     android:id="@+id/logout"
-                    android:icon="@drawable/logout"
+                    android:icon="@drawable/ic_logout"
                     android:title="Đăng xuất" />
             </menu>
         </item>
