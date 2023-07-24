@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -43,10 +44,10 @@ public class TrangChu extends AppCompatActivity implements NavigationView.OnNavi
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new QuanLy()).commit();
         } else if (item.getItemId() == R.id.logout) {
             finish();
+            Toast.makeText(this, "Đăng xất thành công!", Toast.LENGTH_SHORT).show();
         } else if (item.getItemId() == R.id.introduce) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GioiThieu()).commit();
         }
-
         drawerLayout.close();
         return true;
     }

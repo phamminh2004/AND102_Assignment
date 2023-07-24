@@ -62,5 +62,4 @@ public class UserHelper extends SQLiteOpenHelper {
         }
         return false;
     }
-
 }

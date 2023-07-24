@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class QuanLyAdapter extends BaseAdapter {
+
     public Context context;
     public ArrayList<SanPham> list;
     SanPhamHelper sanPhamHelper;
@@ -53,7 +54,7 @@ public class QuanLyAdapter extends BaseAdapter {
         tv_giaban.setText(list.get(position).giaban + " VNĐ");
         tv_soluong.setText("SL: " + list.get(position).soluong);
         tv_delete.setOnClickListener(v -> {
-            new AlertDialog.Builder(context).setTitle("Cánh báo").setIcon(R.drawable.ic_warning).setMessage("Bạn có chắc chắn muốn xóa sản phẩm này không")
+            new AlertDialog.Builder(context).setTitle("Cánh báo").setIcon(R.drawable.ic_warning).setMessage("Bạn có chắc chắn muốn xóa sản phẩm này không?")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

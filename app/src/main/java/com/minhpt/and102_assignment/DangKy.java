@@ -25,17 +25,16 @@ public class DangKy extends AppCompatActivity {
 
         userHelper = new UserHelper(this);
 
-
         btn_sign_up.setOnClickListener(v -> {
             String username = edt_username.getText().toString();
             String password = edt_password.getText().toString();
 
-            if (!userHelper.isUsernameExists(username)) {
+            if (!userHelper.isUsernameExists(username) && !password.isEmpty()) {
                 userHelper.addUser(new User(username, password));
                 Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(DangKy.this, DangNhap.class));
-            } else if (password.isEmpty()) {
-                Toast.makeText(this, "Vui lòng nhập mật khẩu!", Toast.LENGTH_SHORT).show();
+            } else if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập thông tin!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Tài khoản đã tồn tại!", Toast.LENGTH_SHORT).show();
             }

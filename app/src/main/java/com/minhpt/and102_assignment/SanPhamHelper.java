@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class SanPhamHelper extends SQLiteOpenHelper {
     SQLiteDatabase database = this.getWritableDatabase();
-    Context context;
 
     public SanPhamHelper(@Nullable Context context) {
         super(context, "SanPhamDB", null, 1);
@@ -30,9 +29,14 @@ public class SanPhamHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(sql);
         String data = "INSERT INTO SanPham VALUES\n" +
-                " (1,'SP1',1,1),\n" +
-                " (2,'SP2',2,1),\n" +
-                " (3,'SP3',3,1)";
+                "(1,'Bánh quy bơ LU Pháp',45000,10),\n" +
+                "(2,'Snack mực lăn muối ớt',8000,52),\n" +
+                "(3,'Snack khoai tây Lays',12000,38),\n" +
+                "(4,'Bánh gạo One One',30000,11),\n" +
+                "(5,'Kẹo dừa',35000,21),\n" +
+                "(6,'Kẹo Socola',25000,30),\n" +
+                "(7,'Snack bí đỏ',10000,47),\n" +
+                "(8,'Oreo x Blackpink',15000,24)";
         db.execSQL(data);
     }
 
