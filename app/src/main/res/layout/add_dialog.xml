@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginVertical="10dp"
-        android:text="QUẢN LÝ SẢN PHẨM"
+        android:text="THÊM SẢN PHẨM"
         android:textColor="#F44336"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -67,24 +67,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_update"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C87C0D"
-            android:text="UPDATE" />
-
-        <Button
             android:id="@+id/btn_add"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:backgroundTint="#BC0C0C"
+            android:backgroundTint="#C87C0D"
             android:text="ADD" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="#BC0C0C"
+            android:text="CANCEL" />
     </LinearLayout>
 
 </LinearLayout>

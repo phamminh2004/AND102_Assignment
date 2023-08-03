@@ -3,7 +3,6 @@ package com.minhpt.and102_assignment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,22 +77,24 @@ public class QuanLyAdapter extends BaseAdapter {
         });
         tv_edit.setOnClickListener(v -> {
             SanPham sanPham = list.get(position);
-            Edit_Add_SP(sanPham);
+            Edit_SP(sanPham);
         });
         return convertView;
     }
 
-    public void Edit_Add_SP(SanPham sanPham) {
+    public void Edit_SP(SanPham sanPham) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.upadte_dialog, null);
         builder.setView(view);
         AlertDialog dialog = builder.create();
         EditText edt_tensp = view.findViewById(R.id.edt_tensp);
         EditText edt_giaban = view.findViewById(R.id.edt_giaban);
         EditText edt_soluong = view.findViewById(R.id.edt_soluong);
         Button btn_update = view.findViewById(R.id.btn_update);
-        Button btn_add = view.findViewById(R.id.btn_add);
-
+        Button btn_cancel = view.findViewById(R.id.btn_cancel);
+        edt_tensp.setText(sanPham.tensp);
+        edt_giaban.setText(sanPham.giaban + "");
+        edt_soluong.setText(sanPham.soluong + "");
         btn_update.setOnClickListener(v -> {
             String tensp = edt_tensp.getText().toString();
             String giaban = edt_giaban.getText().toString();
@@ -117,6 +118,22 @@ public class QuanLyAdapter extends BaseAdapter {
                 }
             }
         });
+        btn_cancel.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
+
+    public void Add_SP(SanPham sanPham) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.add_dialog, null);
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        EditText edt_tensp = view.findViewById(R.id.edt_tensp);
+        EditText edt_giaban = view.findViewById(R.id.edt_giaban);
+        EditText edt_soluong = view.findViewById(R.id.edt_soluong);
+        Button btn_add = view.findViewById(R.id.btn_add);
+        Button btn_cancel = view.findViewById(R.id.btn_cancel);
 
         btn_add.setOnClickListener(v -> {
             String tensp = edt_tensp.getText().toString();
@@ -140,6 +157,9 @@ public class QuanLyAdapter extends BaseAdapter {
                             Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+        btn_cancel.setOnClickListener(v -> {
+            dialog.dismiss();
         });
         dialog.show();
     }

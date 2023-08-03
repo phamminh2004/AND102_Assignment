@@ -39,7 +39,7 @@ public class QuanLy extends Fragment {
         lv_sp.setAdapter(adapter);
         btn_add.setOnClickListener(v -> {
             SanPham sanPham = new SanPham();
-            adapter.Edit_Add_SP(sanPham);
+            adapter.Add_SP(sanPham);
         });
     }
 
