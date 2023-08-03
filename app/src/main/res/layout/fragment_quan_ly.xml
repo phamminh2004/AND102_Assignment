@@ -7,13 +7,10 @@
     android:padding="10dp"
     tools:context=".QuanLy">
 
-    <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/lv_sp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/white"
-        android:dividerHeight="10dp" />
+        android:layout_height="wrap_content" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add"

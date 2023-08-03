@@ -6,62 +6,50 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class QuanLyAdapter extends BaseAdapter {
+public class SanPhamAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private Context context;
+    private ArrayList<SanPham> list;
+    private SanPhamDAO sanPhamDAO;
+    String regex_int = "\\d+";
 
-    public Context context;
-    public ArrayList<SanPham> list;
-    SanPhamHelper sanPhamHelper;
 
-    public QuanLyAdapter(Context context, ArrayList<SanPham> list) {
+    public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
-        sanPhamHelper = new SanPhamHelper(context);
+        sanPhamDAO = new SanPhamDAO(context);
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_sp, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public int getCount() {
-        return list.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return list.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(R.layout.item_sp, parent, false);
-        TextView tv_tensp = convertView.findViewById(R.id.tv_tensp);
-        TextView tv_giaban = convertView.findViewById(R.id.tv_giaban);
-        TextView tv_soluong = convertView.findViewById(R.id.tv_soluong);
-        TextView tv_edit = convertView.findViewById(R.id.tv_edit);
-        TextView tv_delete = convertView.findViewById(R.id.tv_delete);
-        tv_tensp.setText(list.get(position).tensp);
-        tv_giaban.setText(list.get(position).giaban + " VNĐ");
-        tv_soluong.setText("SL: " + list.get(position).soluong);
-        tv_delete.setOnClickListener(v -> {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.tv_tensp.setText(list.get(position).tensp);
+        holder.tv_giaban.setText(list.get(position).giaban + " VNĐ");
+        holder.tv_soluong.setText("SL: " + list.get(position).soluong);
+        holder.tv_delete.setOnClickListener(v -> {
             new AlertDialog.Builder(context).setTitle("Cánh báo").setIcon(R.drawable.ic_warning).setMessage("Bạn có chắc chắn muốn xóa sản phẩm này không?")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            int masp = list.get(position).masp;
-                            boolean check = sanPhamHelper.deleteSanPham(masp);
+                            int masp = list.get(holder.getAdapterPosition()).masp;
+                            boolean check = sanPhamDAO.deleteSanPham(masp);
                             if (check) {
                                 list.clear();
-                                list = sanPhamHelper.getListSanPham();
+                                list = sanPhamDAO.getListSanPham();
                                 notifyDataSetChanged();
                                 Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
                             } else {
@@ -75,11 +63,10 @@ public class QuanLyAdapter extends BaseAdapter {
                         }
                     }).show();
         });
-        tv_edit.setOnClickListener(v -> {
+        holder.tv_edit.setOnClickListener(v -> {
             SanPham sanPham = list.get(position);
             Edit_SP(sanPham);
         });
-        return convertView;
     }
 
     public void Edit_SP(SanPham sanPham) {
@@ -102,12 +89,14 @@ public class QuanLyAdapter extends BaseAdapter {
             if (tensp.isEmpty() || giaban.isEmpty() || soluong.isEmpty()) {
                 Toast.makeText(context, "Vui lòng điền thông tin!",
                         Toast.LENGTH_SHORT).show();
+            } else if (!giaban.matches(regex_int) || !soluong.matches(regex_int)) {
+                Toast.makeText(context, "Giá bán và số lượng phải là số và >=0", Toast.LENGTH_SHORT).show();
             } else {
                 SanPham sanPham1 = new SanPham(sanPham.masp, tensp, Integer.parseInt(giaban), Integer.parseInt(soluong));
-                boolean check = sanPhamHelper.updateSanPham(sanPham1);
+                boolean check = sanPhamDAO.updateSanPham(sanPham1);
                 if (check) {
                     list.clear();
-                    list = sanPhamHelper.getListSanPham();
+                    list = sanPhamDAO.getListSanPham();
                     notifyDataSetChanged();
                     dialog.dismiss();
                     Toast.makeText(context, "Chỉnh sửa thành công!",
@@ -142,12 +131,14 @@ public class QuanLyAdapter extends BaseAdapter {
             if (tensp.isEmpty() || giaban.isEmpty() || soluong.isEmpty()) {
                 Toast.makeText(context, "Vui lòng điền thông tin!",
                         Toast.LENGTH_SHORT).show();
+            } else if (!giaban.matches(regex_int) || !soluong.matches(regex_int)) {
+                Toast.makeText(context, "Giá bán và số lượng phải là số và >=0", Toast.LENGTH_SHORT).show();
             } else {
                 SanPham sanPham1 = new SanPham(sanPham.masp, tensp, Integer.parseInt(giaban), Integer.parseInt(soluong));
-                boolean check = sanPhamHelper.addSanPham(sanPham1);
+                boolean check = sanPhamDAO.addSanPham(sanPham1);
                 if (check) {
                     list.clear();
-                    list = sanPhamHelper.getListSanPham();
+                    list = sanPhamDAO.getListSanPham();
                     notifyDataSetChanged();
                     dialog.dismiss();
                     Toast.makeText(context, "Thêm thành công!",
@@ -162,5 +153,10 @@ public class QuanLyAdapter extends BaseAdapter {
             dialog.dismiss();
         });
         dialog.show();
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
     }
 }

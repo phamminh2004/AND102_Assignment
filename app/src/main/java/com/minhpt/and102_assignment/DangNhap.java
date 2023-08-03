@@ -14,6 +14,7 @@ public class DangNhap extends AppCompatActivity {
     Button btn_login;
     TextView tv_sign_up;
     UserHelper userHelper;
+    UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,12 @@ public class DangNhap extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
 
         userHelper = new UserHelper(this);
+        userDAO = new UserDAO(this);
 
         btn_login.setOnClickListener(v -> {
             String username = edt_username.getText().toString();
             String password = edt_password.getText().toString();
-            User currentUser = userHelper.checkAcc(new User(username, password));
+            User currentUser = userDAO.checkAcc(new User(username, password));
             if (currentUser != null) {
                 Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(DangNhap.this, TrangChu.class));

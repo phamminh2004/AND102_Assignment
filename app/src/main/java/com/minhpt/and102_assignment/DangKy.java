@@ -14,6 +14,7 @@ public class DangKy extends AppCompatActivity {
     EditText edt_username, edt_password;
     Button btn_sign_up;
     UserHelper userHelper;
+    UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +25,14 @@ public class DangKy extends AppCompatActivity {
         btn_sign_up = findViewById(R.id.btn_sign_up);
 
         userHelper = new UserHelper(this);
+        userDAO = new UserDAO(this);
 
         btn_sign_up.setOnClickListener(v -> {
             String username = edt_username.getText().toString();
             String password = edt_password.getText().toString();
 
-            if (!userHelper.isUsernameExists(username) && !password.isEmpty()) {
-                userHelper.addUser(new User(username, password));
+            if (!userDAO.isUsernameExists(username) && !password.isEmpty() && !username.isEmpty()) {
+                userDAO.addUser(new User(username, password));
                 Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(DangKy.this, DangNhap.class));
             } else if (username.isEmpty() || password.isEmpty()) {

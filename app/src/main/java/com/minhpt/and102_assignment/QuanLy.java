@@ -1,21 +1,16 @@
 package com.minhpt.and102_assignment;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.service.controls.actions.FloatAction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,20 +18,25 @@ import java.util.ArrayList;
 
 public class QuanLy extends Fragment {
     SanPhamHelper sanPhamHelper;
-    QuanLyAdapter adapter;
-    ListView lv_sp;
+    SanPhamDAO sanPhamDAO;
+    SanPhamAdapter adapter;
+    RecyclerView rv_sp;
     FloatingActionButton btn_add;
-    public ArrayList<SanPham> listSP = new ArrayList<>();
+    ArrayList<SanPham> listSP = new ArrayList<>();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lv_sp = view.findViewById(R.id.lv_sp);
+        rv_sp = view.findViewById(R.id.rv_sp);
         btn_add = view.findViewById(R.id.btn_add);
         sanPhamHelper = new SanPhamHelper(getContext());
-        listSP = sanPhamHelper.getListSanPham();
-        adapter = new QuanLyAdapter(getContext(), listSP);
-        lv_sp.setAdapter(adapter);
+        sanPhamDAO = new SanPhamDAO(getContext());
+        listSP = sanPhamDAO.getListSanPham();
+        adapter = new SanPhamAdapter(getContext(), listSP);
+        rv_sp.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        rv_sp.setLayoutManager(layoutManager);
         btn_add.setOnClickListener(v -> {
             SanPham sanPham = new SanPham();
             adapter.Add_SP(sanPham);
