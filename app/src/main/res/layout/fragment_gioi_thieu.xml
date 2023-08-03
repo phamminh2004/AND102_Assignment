@@ -3,47 +3,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".GioiThieu">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:src="@drawable/anonymous"
-        android:layout_marginBottom="20dp"/>
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/person" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:text="MSSV: PH32719"
-        android:textSize="25sp"
+        android:gravity="center"
+        android:text="PHẠM TIẾN MINH"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Sinh viên"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:text="Họ tên: Phạm Tiến Minh"
-        android:textSize="25sp"
+        android:drawableLeft="@drawable/ic_contact"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="THÔNG TIN LIÊN HỆ"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:text="Môn: Lập trình Android 2"
-        android:textSize="25sp"
+        android:drawableLeft="@drawable/ic_phone"
+        android:drawablePadding="20dp"
+        android:paddingLeft="10dp"
+        android:text="0342 2345 23"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:text="Lớp: MD18309"
-        android:textSize="25sp"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawablePadding="20dp"
+        android:paddingLeft="10dp"
+        android:text="minhptph32719@fpt.edu.vn"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:drawableLeft="@drawable/ic_location"
+        android:drawablePadding="20dp"
+        android:paddingLeft="10dp"
+        android:text="Mỹ Đình 2, Nam Từ Liêm, Hà Nội"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:drawableLeft="@drawable/ic_education"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="HỌC VẤN"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:paddingLeft="10dp"
+        android:text="FPT Polytechnic Hà Nội"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:paddingLeft="10dp"
+        android:text="Chuyên ngành: Lập trình Game"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
 </LinearLayout>
