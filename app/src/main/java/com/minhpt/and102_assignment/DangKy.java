@@ -33,8 +33,8 @@ public class DangKy extends AppCompatActivity {
 
             if (!userDAO.isUsernameExists(username) && !password.isEmpty() && !username.isEmpty()) {
                 userDAO.addUser(new User(username, password));
-                Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(DangKy.this, DangNhap.class));
+                Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
             } else if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Vui lòng nhập thông tin!", Toast.LENGTH_SHORT).show();
             } else {

@@ -25,18 +25,17 @@ public class UserDAO {
     }
 
     public User checkAcc(User user) {
-        Cursor cursor = database.query("User", null, "username like?", new String[]{String.valueOf(user.username)}, null, null, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM User WHERE username = ? AND password = ?"
+                , new String[]{String.valueOf(user.username), String.valueOf(user.password)});
         if (cursor != null && cursor.moveToFirst()) {
             User user1 = new User(cursor.getString(0), cursor.getString(1));
-            if (user.password.equalsIgnoreCase(user1.password)) {
-                return user1;
-            }
+            return user1;
         }
         return null;
     }
 
     public boolean isUsernameExists(String username) {
-        Cursor cursor = database.query("User", null, "username like?", new String[]{String.valueOf(username)}, null, null, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM User WHERE username = ?", new String[]{String.valueOf(username)});
         if (cursor != null && cursor.moveToFirst()) {
             return true;
         }
