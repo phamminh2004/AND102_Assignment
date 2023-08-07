@@ -45,7 +45,7 @@ public class SanPhamDAO {
         contentValues.put("giaban", sanPham.giaban);
         contentValues.put("soluong", sanPham.soluong);
         long check = database.insert("SanPham", null, contentValues);
-        return check != 1;
+        return check != -1;
     }
 
     public boolean updateSanPham(SanPham sanPham) {

@@ -21,7 +21,7 @@ public class UserDAO {
         contentValues.put("username", user.username);
         contentValues.put("password", user.password);
         long check = database.insert("User", null, contentValues);
-        return check != 1;
+        return check != -1;
     }
 
     public User checkAcc(User user) {

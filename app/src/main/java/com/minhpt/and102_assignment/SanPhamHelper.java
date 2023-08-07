@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SanPhamHelper extends SQLiteOpenHelper {
     public SanPhamHelper(@Nullable Context context) {
-        super(context, "SanPhamDB", null, 1);
+        super(context, "SanPham", null, 1);
     }
 
     @Override
